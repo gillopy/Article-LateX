@@ -1,0 +1,1028 @@
+
+\documentclass{beamer}
+
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+
+\mode<presentation>
+{
+  \usetheme{default}
+  \usecolortheme{default}
+  \usefonttheme{default}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+
+\title[Statistics]{Introduction to Statistics}
+\author{Guillermo Cabrera}
+\institute{Statistics and Data Analysis}
+\date{\today}
+
+\begin{document}
+
+% ============================================================
+% TITLE
+% ============================================================
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+% ============================================================
+% OUTLINE
+% ============================================================
+
+% Uncomment these lines for an automatically generated outline.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+
+% ============================================================
+% SECTION 1
+% ============================================================
+
+\section{Introduction}
+
+\begin{frame}{What is Statistics?}
+
+\begin{itemize}
+
+  \item Statistics is the discipline concerned with the collection, organization, analysis, interpretation and presentation of data.
+
+  \vskip 0.3cm
+
+  \item Its objective is to extract useful information from data and support decision-making under uncertainty.
+
+  \vskip 0.3cm
+
+  \item Statistics can be divided into two major areas:
+
+  \begin{itemize}
+    \item Descriptive statistics
+    \item Inferential statistics
+  \end{itemize}
+
+  \vskip 0.3cm
+
+  \item Statistical analysis provides a framework for understanding patterns, variability and relationships in data.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Descriptive and Inferential Statistics}
+
+\begin{itemize}
+
+  \item \textbf{Descriptive statistics} summarizes and describes the information contained in a dataset.
+
+  \vskip 0.4cm
+
+  Examples include:
+
+  \begin{itemize}
+    \item Mean
+    \item Median
+    \item Standard deviation
+    \item Percentiles
+    \item Tables and graphs
+  \end{itemize}
+
+  \vskip 0.4cm
+
+  \item \textbf{Inferential statistics} uses information from a sample to make conclusions about a larger population.
+
+  \vskip 0.4cm
+
+  \item Inferential methods include estimation, hypothesis testing and regression analysis.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 2
+% ============================================================
+
+\section{Population and Sample}
+
+\begin{frame}{Population and Sample}
+
+\begin{itemize}
+
+  \item A \textbf{population} is the complete set of individuals, observations or units of interest.
+
+  \vskip 0.4cm
+
+  \item A \textbf{sample} is a subset of the population selected for analysis.
+
+  \vskip 0.4cm
+
+  \item Studying an entire population can be expensive, slow or impossible.
+
+  \vskip 0.4cm
+
+  \item Statistical inference allows us to use information from a sample to learn about the population.
+
+\end{itemize}
+
+\vskip 0.6cm
+
+\begin{center}
+
+Population $\rightarrow$ Sampling $\rightarrow$ Sample $\rightarrow$ Statistical inference
+
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Parameter and Statistic}
+
+\begin{itemize}
+
+  \item A \textbf{parameter} is a numerical characteristic of a population.
+
+  \vskip 0.3cm
+
+  \item A \textbf{statistic} is a numerical characteristic calculated from a sample.
+
+  \vskip 0.4cm
+
+  Examples:
+
+  \begin{itemize}
+    \item Population mean: $\mu$
+    \item Sample mean: $\bar{x}$
+    \item Population variance: $\sigma^2$
+    \item Sample variance: $s^2$
+  \end{itemize}
+
+  \vskip 0.4cm
+
+  \item The statistic is often used to estimate the unknown population parameter.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 3
+% ============================================================
+
+\section{Variables and Data}
+
+\begin{frame}{Statistical Variables}
+
+\begin{itemize}
+
+  \item A \textbf{variable} is a characteristic that can take different values across observations.
+
+  \vskip 0.4cm
+
+  \item Variables can be classified as:
+
+  \begin{itemize}
+
+    \item \textbf{Qualitative variables:} describe categories or attributes.
+
+    \item \textbf{Quantitative variables:} represent numerical quantities.
+
+  \end{itemize}
+
+  \vskip 0.4cm
+
+  \item Quantitative variables can be:
+
+  \begin{itemize}
+    \item Discrete
+    \item Continuous
+  \end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Types of Variables}
+
+\begin{itemize}
+
+  \item \textbf{Nominal:} categories without an intrinsic order.
+
+  \vskip 0.2cm
+
+  Example: country, gender, industry.
+
+  \vskip 0.4cm
+
+  \item \textbf{Ordinal:} categories with an ordered structure.
+
+  \vskip 0.2cm
+
+  Example: low, medium and high.
+
+  \vskip 0.4cm
+
+  \item \textbf{Discrete:} numerical variables based on counts.
+
+  \vskip 0.2cm
+
+  Example: number of firms.
+
+  \vskip 0.4cm
+
+  \item \textbf{Continuous:} numerical variables that can take values within an interval.
+
+  \vskip 0.2cm
+
+  Example: income, height or temperature.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 4
+% ============================================================
+
+\section{Measures of Central Tendency}
+
+\begin{frame}{Measures of Central Tendency}
+
+\begin{itemize}
+
+  \item Measures of central tendency describe the central or typical value of a dataset.
+
+  \vskip 0.4cm
+
+  \item The three most common measures are:
+
+  \begin{itemize}
+    \item Mean
+    \item Median
+    \item Mode
+  \end{itemize}
+
+  \vskip 0.4cm
+
+  \item The appropriate measure depends on the distribution and characteristics of the data.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Arithmetic Mean}
+
+The arithmetic mean is calculated as:
+
+\vskip 0.5cm
+
+\[
+\bar{x} =
+\frac{1}{n}
+\sum_{i=1}^{n} x_i
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item $x_i$ represents each observation.
+
+  \item $n$ is the number of observations.
+
+  \item The mean uses every observation in the dataset.
+
+  \item It is sensitive to extreme values.
+
+\end{itemize}
+
+\vskip 0.3cm
+
+For example:
+
+\[
+2,\;4,\;6,\;8,\;10
+\]
+
+\[
+\bar{x} = \frac{2+4+6+8+10}{5}=6
+\]
+
+\end{frame}
+
+
+\begin{frame}{Median and Mode}
+
+\begin{itemize}
+
+  \item The \textbf{median} is the value that separates the ordered data into two equal parts.
+
+  \vskip 0.3cm
+
+  \item The \textbf{mode} is the most frequently occurring value.
+
+\end{itemize}
+
+\vskip 0.5cm
+
+For the dataset:
+
+\[
+2,\;3,\;3,\;4,\;5,\;8,\;10
+\]
+
+\vskip 0.3cm
+
+\[
+\text{Mean} = 5
+\]
+
+\[
+\text{Median} = 4
+\]
+
+\[
+\text{Mode} = 3
+\]
+
+\vskip 0.4cm
+
+The median is generally more robust than the mean when extreme observations are present.
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 5
+% ============================================================
+
+\section{Measures of Dispersion}
+
+\begin{frame}{Measures of Dispersion}
+
+\begin{itemize}
+
+  \item Measures of dispersion describe how spread out the observations are.
+
+  \vskip 0.4cm
+
+  Important measures include:
+
+  \begin{itemize}
+    \item Range
+    \item Variance
+    \item Standard deviation
+    \item Interquartile range
+  \end{itemize}
+
+  \vskip 0.4cm
+
+  \item Two datasets can have the same mean but very different levels of variability.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Variance}
+
+The sample variance is defined as:
+
+\vskip 0.5cm
+
+\[
+s^2 =
+\frac{1}{n-1}
+\sum_{i=1}^{n}
+(x_i-\bar{x})^2
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item It measures the average squared deviation from the sample mean.
+
+  \item Squaring the deviations prevents positive and negative differences from cancelling each other.
+
+  \item The denominator $n-1$ provides the usual unbiased estimator of population variance under standard random-sampling assumptions.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Standard Deviation}
+
+The standard deviation is the square root of the variance:
+
+\vskip 0.5cm
+
+\[
+s =
+\sqrt{
+\frac{1}{n-1}
+\sum_{i=1}^{n}
+(x_i-\bar{x})^2
+}
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item Standard deviation is expressed in the same units as the original variable.
+
+  \item A small standard deviation indicates observations are concentrated around the mean.
+
+  \item A large standard deviation indicates greater dispersion.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Coefficient of Variation}
+
+The coefficient of variation measures relative dispersion:
+
+\vskip 0.5cm
+
+\[
+CV =
+\frac{s}{\bar{x}}
+\]
+
+\vskip 0.2cm
+
+or, expressed as a percentage,
+
+\[
+CV =
+\frac{s}{\bar{x}}\times100
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item It is useful for comparing variability across variables with different scales.
+
+  \item It is particularly useful when the mean is positive and meaningfully different from zero.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 6
+% ============================================================
+
+\section{Distribution of Data}
+
+\begin{frame}{Frequency Distribution}
+
+\begin{itemize}
+
+  \item A frequency distribution describes how often different values or intervals occur.
+
+  \vskip 0.4cm
+
+  \item Frequencies can be represented using:
+
+  \begin{itemize}
+    \item Frequency tables
+    \item Histograms
+    \item Bar charts
+    \item Density plots
+  \end{itemize}
+
+  \vskip 0.4cm
+
+  \item Visualization helps identify concentration, dispersion, skewness and unusual observations.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Normal Distribution}
+
+The normal distribution is one of the most important probability distributions in statistics.
+
+\vskip 0.5cm
+
+Its probability density function is:
+
+\[
+f(x)=
+\frac{1}{\sigma\sqrt{2\pi}}
+e^{-\frac{1}{2}
+\left(
+\frac{x-\mu}{\sigma}
+\right)^2}
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item It is symmetric around the mean $\mu$.
+
+  \item The mean, median and mode are equal.
+
+  \item The parameter $\sigma$ determines the dispersion of the distribution.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{The Empirical Rule}
+
+For a normally distributed variable:
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item Approximately $68\%$ of observations lie within $\mu \pm 1\sigma$.
+
+  \item Approximately $95\%$ lie within $\mu \pm 2\sigma$.
+
+  \item Approximately $99.7\%$ lie within $\mu \pm 3\sigma$.
+
+\end{itemize}
+
+\vskip 0.7cm
+
+\[
+68\% \quad \rightarrow \quad 1\sigma
+\]
+
+\[
+95\% \quad \rightarrow \quad 2\sigma
+\]
+
+\[
+99.7\% \quad \rightarrow \quad 3\sigma
+\]
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 7
+% ============================================================
+
+\section{Probability}
+
+\begin{frame}{Probability}
+
+\begin{itemize}
+
+  \item Probability quantifies uncertainty about the occurrence of an event.
+
+  \vskip 0.4cm
+
+  \item The probability of an event $A$ satisfies:
+
+\[
+0 \leq P(A) \leq 1
+\]
+
+  \vskip 0.4cm
+
+  \item A probability of $0$ means the event is impossible.
+
+  \item A probability of $1$ means the event is certain.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Conditional Probability}
+
+Conditional probability measures the probability of an event given that another event has occurred.
+
+\vskip 0.5cm
+
+\[
+P(A|B)
+=
+\frac{P(A\cap B)}
+{P(B)}
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item $P(A|B)$ is the probability of $A$ given $B$.
+
+  \item $P(A\cap B)$ is the probability that both events occur.
+
+  \item $P(B)$ is the probability of event $B$.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 8
+% ============================================================
+
+\section{Correlation}
+
+\begin{frame}{Correlation}
+
+\begin{itemize}
+
+  \item Correlation measures the strength and direction of a linear relationship between two quantitative variables.
+
+  \vskip 0.5cm
+
+  \item The Pearson correlation coefficient is:
+
+\[
+r =
+\frac{
+\sum_{i=1}^{n}
+(x_i-\bar{x})(y_i-\bar{y})
+}{
+\sqrt{
+\sum_{i=1}^{n}(x_i-\bar{x})^2
+\sum_{i=1}^{n}(y_i-\bar{y})^2
+}
+}
+\]
+
+  \vskip 0.4cm
+
+  \item The coefficient satisfies:
+
+\[
+-1 \leq r \leq 1
+\]
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Interpreting Correlation}
+
+\begin{itemize}
+
+  \item $r \approx 1$: strong positive linear association.
+
+  \vskip 0.3cm
+
+  \item $r \approx -1$: strong negative linear association.
+
+  \vskip 0.3cm
+
+  \item $r \approx 0$: weak or no linear association.
+
+  \vskip 0.5cm
+
+  \item Correlation does not by itself establish causality.
+
+  \vskip 0.3cm
+
+  \item A high correlation can arise from confounding variables, common trends or other mechanisms.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 9
+% ============================================================
+
+\section{Sampling}
+
+\begin{frame}{Sampling Methods}
+
+\begin{itemize}
+
+  \item Sampling determines which observations are selected from a population.
+
+  \vskip 0.4cm
+
+  Common probability sampling methods include:
+
+  \begin{itemize}
+    \item Simple random sampling
+    \item Systematic sampling
+    \item Stratified sampling
+    \item Cluster sampling
+  \end{itemize}
+
+  \vskip 0.4cm
+
+  \item The sampling design affects the representativeness and precision of statistical estimates.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Sampling Error}
+
+\begin{itemize}
+
+  \item A sample generally does not reproduce the population perfectly.
+
+  \vskip 0.4cm
+
+  \item \textbf{Sampling error} is the random difference between a sample estimate and the corresponding population parameter.
+
+  \vskip 0.4cm
+
+  \item Increasing the sample size generally reduces sampling variability.
+
+  \vskip 0.4cm
+
+  \item However, increasing sample size does not automatically eliminate systematic bias.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 10
+% ============================================================
+
+\section{Statistical Inference}
+
+\begin{frame}{Confidence Intervals}
+
+A confidence interval provides a range of plausible values for a population parameter.
+
+\vskip 0.5cm
+
+For a population mean under standard conditions:
+
+\[
+\bar{x}
+\pm
+z_{\alpha/2}
+\frac{\sigma}{\sqrt{n}}
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item $\bar{x}$ is the sample mean.
+
+  \item $\sigma$ is the population standard deviation.
+
+  \item $n$ is the sample size.
+
+  \item $z_{\alpha/2}$ is the appropriate critical value.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Hypothesis Testing}
+
+\begin{itemize}
+
+  \item Hypothesis testing provides a formal framework for evaluating claims about a population.
+
+  \vskip 0.4cm
+
+  \item The procedure usually involves:
+
+  \begin{enumerate}
+    \item Formulating the null hypothesis $H_0$.
+    \item Formulating the alternative hypothesis $H_1$.
+    \item Choosing a significance level $\alpha$.
+    \item Calculating a test statistic.
+    \item Obtaining a $p$-value or comparing with a critical value.
+    \item Making a statistical decision.
+  \end{enumerate}
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Statistical Significance}
+
+\begin{itemize}
+
+  \item The $p$-value measures how incompatible the observed data are with the null hypothesis, under the assumptions of the statistical test.
+
+  \vskip 0.4cm
+
+  \item A common significance level is:
+
+\[
+\alpha = 0.05
+\]
+
+  \vskip 0.4cm
+
+  \item If $p < \alpha$, the null hypothesis is rejected under the chosen testing rule.
+
+  \vskip 0.4cm
+
+  \item Statistical significance does not necessarily imply economic, practical or causal significance.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 11
+% ============================================================
+
+\section{Regression}
+
+\begin{frame}{Simple Linear Regression}
+
+Simple linear regression models the conditional mean of a dependent variable as a function of one explanatory variable:
+
+\vskip 0.5cm
+
+\[
+Y_i =
+\beta_0 +
+\beta_1 X_i +
+\varepsilon_i
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item $Y_i$: dependent variable.
+
+  \item $X_i$: explanatory variable.
+
+  \item $\beta_0$: intercept.
+
+  \item $\beta_1$: slope coefficient.
+
+  \item $\varepsilon_i$: error term.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Interpreting the Regression Coefficient}
+
+For the model:
+
+\[
+Y_i =
+\beta_0 +
+\beta_1X_i+
+\varepsilon_i
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item $\beta_0$ represents the expected value of $Y$ when $X=0$.
+
+  \vskip 0.3cm
+
+  \item $\beta_1$ represents the expected change in $Y$ associated with a one-unit increase in $X$, conditional on the model specification.
+
+  \vskip 0.4cm
+
+  \item Interpretation depends on the measurement units, functional form and assumptions of the model.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Coefficient of Determination}
+
+The coefficient of determination is:
+
+\vskip 0.5cm
+
+\[
+R^2 =
+1 -
+\frac{SS_{Residual}}
+{SS_{Total}}
+\]
+
+\vskip 0.5cm
+
+\begin{itemize}
+
+  \item $R^2$ measures the proportion of variation in the dependent variable explained by the fitted model relative to a constant-only benchmark.
+
+  \vskip 0.3cm
+
+  \item Higher $R^2$ does not necessarily imply a better causal model.
+
+  \vskip 0.3cm
+
+  \item Model quality should also consider assumptions, specification, prediction error and out-of-sample performance.
+
+\end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% SECTION 12
+% ============================================================
+
+\section{Conclusion}
+
+\begin{frame}{Key Statistical Concepts}
+
+\begin{itemize}
+
+  \item Statistics provides tools for understanding data and uncertainty.
+
+  \vskip 0.3cm
+
+  \item Descriptive statistics summarize observed data.
+
+  \vskip 0.3cm
+
+  \item Probability provides the mathematical framework for uncertainty.
+
+  \vskip 0.3cm
+
+  \item Sampling allows us to study populations using subsets of observations.
+
+  \vskip 0.3cm
+
+  \item Inferential statistics allows estimation and hypothesis testing.
+
+  \vskip 0.3cm
+
+  \item Correlation measures association, while regression provides a framework for modeling conditional relationships.
+
+  \vskip 0.3cm
+
+  \item Statistical results must always be interpreted considering assumptions, uncertainty and potential sources of bias.
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Final Perspective}
+
+\begin{center}
+
+\Large
+``Statistics is not only about calculating numbers.''
+
+\vskip 0.8cm
+
+\normalsize
+
+It is about understanding variation,\\
+quantifying uncertainty,\\
+and making informed decisions from data.
+
+\end{center}
+
+\end{frame}
+
+
+\end{document}
+```

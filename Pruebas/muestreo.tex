@@ -1,0 +1,435 @@
+%% ============================================================
+%%  TRABAJO AUTÓNOMO N.º 3
+%%  Maestría en Gestión y Administración Financiera Pública
+%%  Formato académico en economía
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% --- Codificación y lenguaje ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+
+% --- Márgenes ---
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+
+% --- Matemáticas ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Tablas ---
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+
+% --- Figuras ---
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{{figuras/}}
+
+% --- Colores e hipervínculos ---
+\usepackage[colorlinks=true,
+            linkcolor=black,
+            citecolor=blue,
+            urlcolor=blue]{hyperref}
+
+% --- Listas ---
+\usepackage{enumitem}
+
+% --- Notas al pie ---
+\usepackage{footmisc}
+
+% --- Formato de captions ---
+\usepackage{caption}
+
+% ============================================================
+%  MACROS
+% ============================================================
+
+% Formato para montos en guaraníes.
+% Se utiliza \text{} para evitar conflictos con babel
+% cuando el macro aparece dentro de modo matemático.
+\newcommand{\Gs}[1]{Gs.\ \text{#1}}
+
+% ============================================================
+%  ENTORNOS MATEMÁTICOS
+% ============================================================
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
+\newtheorem{assumption}{Supuesto}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observación}
+
+% ============================================================
+%  METADATOS DEL DOCUMENTO
+% ============================================================
+
+\title{%
+
+    \textbf{Maestría en Gestión y Administración Financiera Pública}\\[6pt]
+    {\large Auditoria Gubernamental MECIP}\\\
+
+    \large Trabajo Autónomo\\\
+    
+    \large Modulo: 
+    
+}
+
+\author{%
+    Aqui va el Autor\\[6pt]
+}
+
+\date{2026}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Introducción y objetivo}
+% ============================================================
+
+De acuerdo con la consigna del trabajo práctico, se toma como base el listado
+de comprobantes suministrado (\texttt{1393.csv}) y se elabora el muestreo
+aplicando la fórmula que corresponde según el tipo de variable a auditar,
+explicando al final la ficha técnica resultante.
+
+El listado corresponde a un libro de ventas: cada fila es un comprobante
+(factura de contado, factura de crédito o nota de crédito) con su fecha,
+número, timbrado, RUC/CI del cliente, montos gravados, IVA y total. El
+objetivo de auditoría es examinar una muestra representativa de esos
+comprobantes para validar la existencia y exactitud de los importes
+registrados.
+
+% ============================================================
+\section{Marco conceptual}
+% ============================================================
+
+\subsection{Población y muestra}
+
+La \textbf{población} es el conjunto finito o infinito de elementos con
+características comunes sobre el cual se harán extensivas las conclusiones
+de la revisión; la \textbf{muestra} es el subconjunto representativo que se
+extrae de la población accesible \cite{cofae}. El proceso para seleccionar
+esa muestra es el \textbf{muestreo}.
+
+\subsection{Modelos estadísticos de tamaño de muestra}
+
+El material presenta dos modelos, según el tipo de variable que se quiere
+medir:
+
+\begin{enumerate}
+    \item \textbf{Fórmulas según Kish} --- para estimar una
+    \emph{proporción o atributo} (por ejemplo, qué porcentaje de comprobantes
+    presenta un determinado incumplimiento).
+
+    \item \textbf{Estimación de la medida por unidad} --- para estimar o
+    poner a prueba un \emph{monto} (una variable continua), como el importe
+    total de los comprobantes.
+\end{enumerate}
+
+\subsubsection{Fórmulas según Kish}
+
+\begin{align}
+    n' &= \frac{s^2}{V^2} \\
+    n &= \frac{n'}{1 + n'/N} \\
+    V^2 &= S_e^2 \\
+    s^2 &= \rho (1-\rho)
+\end{align}
+
+donde $N$ es el tamaño de la población, $\rho$ la probabilidad de ocurrencia
+esperada del atributo, $S_e$ el error estándar deseado, $n'$ la muestra sin
+ajustar y $n$ la muestra ajustada por población finita.
+
+\subsubsection{Estimación de la medida por unidad}
+
+Cuando la variable de interés es un monto, el tamaño de muestra se calcula
+a partir de la desviación estándar del monto y del error tolerable definido
+para la auditoría:
+
+\begin{align}
+    TPRM &= \frac{ET}{1 + \dfrac{CAI}{CRI}} \\[4pt]
+    n &= \frac{N \times CRI \times De}{TPRM}
+\end{align}
+
+donde:
+\begin{itemize}[nosep]
+    \item $N$ = tamaño de la población a muestrear;
+    \item $ET$ = error tolerable (el error monetario máximo que puede existir
+          en la partida sin afectar de forma material la información que
+          la integra);
+    \item $CAI$, $CRI$ = coeficientes de aceptación y de rechazo incorrecto,
+          según el nivel de riesgo aceptado por el auditor (Tabla
+          \ref{tab:riesgo});
+    \item $De$ = desviación estándar estimada del monto;
+    \item $TPRM$ = tolerancia planeada para el riesgo de muestreo.
+\end{itemize}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Coeficientes de aceptación y rechazo incorrecto según el nivel
+    de riesgo aceptable}
+    \label{tab:riesgo}
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        Nivel de riesgo aceptable (\%) & CAI & CRI \\
+        \midrule
+        1{,}00  & 2{,}33 & 2{,}58 \\
+        4{,}60  & 1{,}68 & 2{,}00 \\
+        \textbf{5{,}00}  & \textbf{1{,}64} & \textbf{1{,}96} \\
+        10{,}00 & 1{,}28 & 1{,}44 \\
+        15{,}00 & 1{,}04 & 1{,}28 \\
+        20{,}00 & 0{,}84 & 1{,}15 \\
+        25{,}00 & 0{,}67 & 1{,}04 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Distribución de la muestra por estrato}
+
+Cuando la población está dividida en estratos (por ejemplo, tipos de
+documento), la muestra se reparte proporcionalmente mediante un factor
+multiplicador:
+
+\begin{equation}
+    f = \frac{n}{N}, \qquad n_h = \lceil N_h \times f \rceil
+\end{equation}
+
+donde $N_h$ es el tamaño de cada estrato y $n_h$ la cantidad de elementos a
+seleccionar dentro de ese estrato.
+
+\subsection{Modelo de riesgo de auditoría}
+
+El material vincula el muestreo con el modelo de riesgo de auditoría:
+
+\begin{align}
+    RA &= RI \times RC \times RD \\
+    RD &= PA \times PD \\
+    RA &= RI \times RC \times PA \times PD
+\end{align}
+
+donde $RA$ es el riesgo de auditoría, $RI$ el riesgo inherente, $RC$ el
+riesgo de control, $RD$ el riesgo de detección, $PA$ el riesgo de no
+detectar un error material con los procedimientos analíticos y $PD$ el
+riesgo tolerable de aceptación incorrecta (que determina, en definitiva, el
+nivel de riesgo con el que se entra a la Tabla~\ref{tab:riesgo}).
+
+% ============================================================
+\section{Descripción de los datos auditados}
+% ============================================================
+
+El listado \texttt{1393.csv} contiene 8.855 filas exportadas. Antes de
+definir la población se eliminaron: (i) una fila vacía inicial y (ii) la
+fila de totales del reporte (que no es un comprobante sino la suma de la
+columna \emph{Total}). La suma de la columna \emph{Total} de la población
+depurada se validó contra ese total de control, verificando el cuadre.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Estadísticos descriptivos de la variable \emph{Total} (Gs.)}
+    \label{tab:descriptivas}
+    \begin{tabular}{@{}lr@{}}
+        \toprule
+        Estadístico & Valor \\
+        \midrule
+        $N$ (población) & 8.853 \\
+        Media & 1.526.889 \\
+        Desviación estándar & 12.623.325 \\
+        Mínimo & 0 \\
+        Mediana & 593.600 \\
+        Máximo & 1.166.521.726 \\
+        Asimetría (skewness) & 88{,}85 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+La asimetría es muy alta porque un único comprobante (Fact. Crédito
+001-001-0220680, del 06/02/2024, por \Gs{1.166.521.726}) concentra un
+importe muy superior al resto (más de 38 desviaciones estándar por encima
+de la media). Por ese motivo se decidió \textbf{examinar esa partida al
+100\,\%} y aplicar el muestreo estadístico únicamente al resto de la
+población ($N = \text{8.852}$ comprobantes), siguiendo el criterio de combinar
+selección dirigida de partidas significativas con muestreo probabilístico
+para el resto.
+
+% ============================================================
+\section{Selección del modelo de muestreo}
+% ============================================================
+
+La variable a auditar (\emph{Total}) es un monto, no un atributo
+binario, por lo que corresponde aplicar el modelo de
+\textbf{estimación de la medida por unidad} y no las fórmulas de Kish
+(éstas se reservan para atributos, por ejemplo si el objetivo fuera medir
+qué porcentaje de comprobantes carece de un dato obligatorio).
+
+Los parámetros de riesgo se fijaron así: % TODO: justificar/ajustar según la materialidad real del trabajo
+
+\begin{itemize}[nosep]
+    \item Materialidad (error tolerable): 1\,\% del monto total de la
+          población a muestrear.
+
+    \item Nivel de riesgo aceptable: 5\,\% $\Rightarrow$ $CAI = 1{,}64$,
+          $CRI = 1{,}96$ (Tabla~\ref{tab:riesgo}).
+\end{itemize}
+
+% ============================================================
+\section{Cálculo del tamaño de muestra}
+% ============================================================
+
+Con la población depurada de la partida de alto valor:
+$N = \text{8.852}$, $De = \Gs{2.451.313}$.
+
+Error tolerable:
+
+\[
+    ET = 0{,}01 \times \Gs{12.351.024.537}
+       = \Gs{123.510.000}
+\]
+
+Tolerancia planeada para el riesgo de muestreo:
+
+\[
+    TPRM = \frac{ET}{1 + \dfrac{CAI}{CRI}}
+         = \frac{\text{123.510.000}}
+                {1 + \dfrac{1{,}64}{1{,}96}}
+         = \Gs{67.244.333{,}33}
+\]
+
+Tamaño de muestra:
+
+\[
+    n = \frac{N \times CRI \times De}{TPRM}
+      = \frac{\text{8.852} \times 1{,}96 \times
+              \text{2.451.313}}
+             {\text{67.244.333{,}33}}
+      = 632{,}47
+      \;\Rightarrow\;
+      n = 633
+\]
+
+% ============================================================
+\section{Distribución de la muestra por estrato}
+% ============================================================
+
+Factor multiplicador: $f = n/N = 633/\text{8.852} = 7{,}15\%$.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Distribución de la muestra por tipo de documento}
+    \label{tab:estratos}
+    \begin{tabular}{@{}lrrr@{}}
+        \toprule
+        Tipo de documento & $N_h$ & $f$ & $n_h$ \\
+        \midrule
+        Factura de contado & 1.663 & 7{,}15\,\% & 119 \\
+        Factura de crédito & 6.486 & 7{,}15\,\% & 464 \\
+        Nota de crédito     &   703 & 7{,}15\,\% &  51 \\
+        \midrule
+        \textbf{Total}      & \textbf{8.852} & & \textbf{634} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Dentro de cada estrato la selección se realizó al azar (muestreo aleatorio
+simple estratificado), con semilla fija para que el resultado sea
+reproducible.
+
+% ============================================================
+\section{Ficha técnica del muestreo}
+% ============================================================
+
+\begin{longtable}{@{}p{7cm}p{7cm}@{}}
+    \caption{Ficha técnica del muestreo}
+    \label{tab:ficha}\\
+    \toprule
+    \textbf{Parámetro} & \textbf{Valor} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Parámetro} & \textbf{Valor} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{2}{r}{\footnotesize\textit{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \endlastfoot
+
+    Población total ($N_0$) & 8.853 comprobantes \\
+    Partidas de alto valor (examen 100\,\%) & 1 \\
+    Población base de muestreo ($N$) & 8.852 comprobantes \\
+    Variable de interés & Total del comprobante (Gs.) \\
+    Modelo estadístico aplicado & Estimación de la medida por unidad \\
+    Desviación estándar estimada ($De$) & \Gs{2.451.313} \\
+    Nivel de riesgo aceptable & 5\,\% \\
+    Coeficiente de aceptación incorrecta ($CAI$) & 1{,}64 \\
+    Coeficiente de rechazo incorrecto ($CRI$) & 1{,}96 \\
+    Error tolerable ($ET$) & \Gs{123.510.000} \\
+    Tolerancia planeada para el riesgo de muestreo ($TPRM$) &
+    \Gs{67.244.333{,}33} \\
+    Tamaño de muestra calculado ($n$) & 633 \\
+    Tipo de muestreo & Probabilístico, estratificado por tipo de documento \\
+    Muestra final (alto valor + estadística) & 635 comprobantes \\
+    Cobertura sobre la población total & 7{,}17\,\% \\
+    Semilla de aleatorización & 42 \\
+
+\end{longtable}
+
+% ============================================================
+\section{Conclusiones}
+% ============================================================
+
+% TODO: redactar las conclusiones propias del trabajo, por ejemplo:
+
+\begin{itemize}
+    \item El listado depurado quedó conformado por 8.853 comprobantes, cuya
+    suma de importes coincide exactamente con el total de control del
+    reporte original, lo que valida la integridad de la población.
+
+    \item Dado que la variable auditada es un monto continuo, se aplicó el
+    modelo de \emph{estimación de la medida por unidad}, obteniéndose un
+    tamaño de muestra de 633 comprobantes sobre la población depurada del
+    valor atípico.
+
+    \item Sumando la partida de alto valor examinada al 100\,\%, la muestra
+    final asciende a 635 comprobantes (7{,}17\,\% de la población total),
+    distribuidos proporcionalmente entre los tres tipos de documento.
+\end{itemize}
+
+% ============================================================
+% BIBLIOGRAFÍA
+% ============================================================
+
+\newpage
+
+\begin{thebibliography}{9}
+
+\bibitem{cofae}
+COFAE -- Centro de Investigación y Desarrollo.
+\emph{Muestreo en Auditoría}. Material de la cátedra CID Auditoría de
+Estado. Docente adjunto: Pierre Ponte León.
+
+\end{thebibliography}
+
+% ============================================================
+\end{document}
