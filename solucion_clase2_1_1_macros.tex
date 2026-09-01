@@ -1,0 +1,95 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 1.1: Macros propias
+%%  Clase 2 — Después de diapositiva "Macros propias: nunca repitas código"
+%%  Compilar: F5 (pdflatex)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+
+% --- MACROS ECONOMÉTRICAS (en el preámbulo) ---
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\plim}{\operatorname{plim}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\deriv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+
+\title{Macros personalizadas en \LaTeX{}}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Uso de macros en expresiones econométricas}
+
+Con las macros definidas, escribimos expresiones de forma más limpia y consistente.
+
+\subsection{Esperanza condicional}
+
+\[
+  \E[Y_i | X_i] = X_i'\beta
+\]
+
+Si queremos cambiar la notación de esperanza, solo editamos \verb|\E| una vez 
+en el preámbulo, y todo el documento se actualiza automáticamente.
+
+\subsection{Varianza del estimador}
+
+\[
+  \Var(\hat{\beta}) = \sigma^2(X'X)^{-1}
+\]
+
+\subsection{Covarianza entre variables}
+
+\[
+  \Cov(X_i, \varepsilon_i) = 0
+\]
+
+Este es el supuesto de exogeneidad estricta, crucial para insesgadez de OLS.
+
+\subsection{Límite en probabilidad}
+
+\[
+  \plim \hat{\beta} = \beta
+\]
+
+Este es el resultado de consistencia del estimador OLS bajo supuestos estándar.
+
+\subsection{Derivada parcial}
+
+Usando la macro con argumentos:
+
+\[
+  \deriv{u(c)}{c} = c^{-\sigma}
+\]
+
+Esta es la utilidad marginal de consumo en un modelo estándar con preferencias 
+de potencia.
+
+\subsection{Valor absoluto y norma}
+
+\[
+  \abs{x} \quad \text{y} \quad \norm{\hat{\beta} - \beta} \leq C / \sqrt{N}
+\]
+
+La norma de la diferencia entre el estimador y el parámetro verdadero converge 
+a cero a tasa $1/\sqrt{N}$.
+
+\section*{Ventajas de las macros}
+
+\begin{enumerate}
+  \item \textbf{Consistencia}: todos los símbolos se ven iguales en todo el documento.
+  \item \textbf{Mantenibilidad}: cambios globales requieren editar un único lugar.
+  \item \textbf{Legibilidad}: el código es más limpio y semánticamente significativo.
+  \item \textbf{Compatibilidad}: los comandos personalizados funcionan igual en 
+        artículos, libros, presentaciones, etc.
+\end{enumerate}
+
+\end{document}

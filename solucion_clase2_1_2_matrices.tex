@@ -1,0 +1,75 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 1.2: Matrices y sistemas
+%%  Clase 2 — Después de diapositiva "Matrices y sistemas"
+%%  Compilar: F5 (pdflatex)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+
+\title{Notación matricial en econometría}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Expresión a) — Modelo en notación matricial}
+
+El modelo de regresión lineal se puede expresar de forma compacta como:
+\[
+  \mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]
+
+donde la matriz de regresores es:
+\[
+  \mathbf{X} = \begin{pmatrix} 1 & x_{11} & x_{12} \\ 1 & x_{21} & x_{22} \\ \vdots & \vdots & \vdots \\ 1 & x_{N1} & x_{N2} \end{pmatrix}
+\]
+
+y el vector de parámetros es:
+\[
+  \boldsymbol{\beta} = \begin{pmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \end{pmatrix}
+\]
+
+La primera columna de $\mathbf{X}$ es un vector de unos que captura el 
+término constante (intercept). Las siguientes columnas contienen los valores 
+de los dos regresores para cada observación.
+
+\section{Expresión b) — Sistema de ecuaciones simultáneas}
+
+En un modelo de oferta y demanda simultáneo, podemos escribir el sistema como:
+\[
+  q_t^d = \begin{cases} 
+    \alpha_0 + \alpha_1 p_t + \alpha_2 y_t + \varepsilon_t^d & \text{(Demanda)} \\ 
+    \beta_0 + \beta_1 p_t + \beta_2 w_t + \varepsilon_t^s & \text{(Oferta)} 
+  \end{cases}
+\]
+
+donde:
+\begin{itemize}
+  \item $q_t^d$ y $q_t^s$ son cantidades demandadas y ofrecidas.
+  \item $p_t$ es el precio.
+  \item $y_t$ es el ingreso (afecta demanda).
+  \item $w_t$ es el salario (afecta oferta).
+  \item $\varepsilon_t^d$ y $\varepsilon_t^s$ son términos de error.
+\end{itemize}
+
+En equilibrio, $q_t^d = q_t^s$, lo que genera correlación entre el precio 
+y el error, violando así el supuesto de exogeneidad de OLS. Por eso necesitamos 
+métodos de variables instrumentales para estimar este sistema.
+
+\subsection*{Entornos de matrices disponibles}
+
+\LaTeX{} ofrece varios tipos:
+\begin{itemize}
+  \item \texttt{pmatrix} — paréntesis: $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$
+  \item \texttt{bmatrix} — corchetes: $\begin{bmatrix} a & b \\ c & d \end{bmatrix}$
+  \item \texttt{vmatrix} — barras: $\begin{vmatrix} a & b \\ c & d \end{vmatrix}$ (determinante)
+  \item \texttt{Vmatrix} — barras dobles: $\begin{Vmatrix} a & b \\ c & d \end{Vmatrix}$
+  \item \texttt{matrix} — sin delimitadores: $\begin{matrix} a & b \\ c & d \end{matrix}$
+\end{itemize}
+
+\end{document}

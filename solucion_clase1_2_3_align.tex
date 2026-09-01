@@ -1,0 +1,47 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 2.3: Sistema de ecuaciones con align
+%%  Clase 1 — Después de diapositiva "Ecuaciones alineadas: align"
+%%  Compilar: F5 (pdflatex, dos veces)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+
+\title{Derivación del estimador OLS}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Demostración paso a paso}
+
+El estimador OLS se obtiene minimizando la suma de cuadrados de residuos:
+
+\begin{align}
+  \hat{\beta} &= \arg\min_{\beta} \| Y - X\beta \|^2 \\
+              &= \arg\min_{\beta} (Y - X\beta)'(Y - X\beta) \nonumber \\
+              &= (X'X)^{-1}X'Y \label{eq:ols_final}
+\end{align}
+
+La interpretación de estos pasos es la siguiente:
+
+\begin{enumerate}
+  \item En la línea \eqref{eq:ols_final}, expresamos la suma de cuadrados usando 
+        la norma euclidiana.
+  \item Expandimos el producto interno.
+  \item Tomamos la derivada con respecto a $\beta$, igualamos a cero, y resolvemos 
+        (pasos algebraicos omitidos).
+  \item Obtenemos la fórmula cerrada para el estimador OLS.
+\end{enumerate}
+
+\subsection*{Interpretación de $\|Y - X\beta\|^2$}
+
+Este símbolo representa la norma euclidiana (distancia en $\mathbb{R}^N$) del 
+vector de residuos. La norma es la raíz cuadrada de la suma de cuadrados, así 
+que al elevar al cuadrado obtenemos precisamente $\sum_{i=1}^N (Y_i - X_i'\beta)^2$.
+
+\end{document}

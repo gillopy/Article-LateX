@@ -1,0 +1,55 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 2.2: Símbolos matemáticos
+%%  Clase 1 — Después de diapositiva "Símbolos esenciales"
+%%  Compilar: F5 (pdflatex)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+
+\title{Símbolos matemáticos en economía}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Expresiones econométricas}
+
+Aquí están las expresiones del ejercicio usando LaTeX:
+
+\subsection{Estimador OLS en forma matricial}
+\[
+  \hat{\beta}_{OLS} = (X'X)^{-1}X'Y
+\]
+
+\subsection{Supuesto de exogeneidad}
+\[
+  \mathbb{E}[\varepsilon_i | X_i] = 0
+\]
+
+\subsection{Varianza del estimador}
+\[
+  \text{Var}(\hat{\beta}) = \sigma^2(X'X)^{-1}
+\]
+
+\subsection{Condición de primer orden para máxima verosimilitud}
+\[
+  \frac{\partial \ln L(\theta)}{\partial \theta} = 0
+\]
+
+\subsection{Suma doble de cuadrados}
+\[
+  \sum_{t=1}^{T} \sum_{i=1}^{N} y_{it}^2
+\]
+
+\subsection{Fórmula del coeficiente de correlación}
+\[
+  \hat{\rho} = \frac{\sum_i (X_i - \bar{X})(Y_i - \bar{Y})}
+                     {\sqrt{\sum_i(X_i-\bar{X})^2 \cdot \sum_i(Y_i-\bar{Y})^2}}
+\]
+
+\end{document}

@@ -1,0 +1,48 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 2.1: Ecuaciones básicas
+%%  Clase 1 — Después de diapositiva "Modos matemáticos"
+%%  Compilar: F5 (pdflatex, dos veces para referencias)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+
+\title{El modelo econométrico}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Modelo de regresión lineal múltiple}
+
+El modelo de regresión lineal múltiple es:
+\begin{equation}
+  Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \varepsilon_i
+  \label{eq:rlm}
+\end{equation}
+
+donde $Y_i$ es la variable dependiente, $X_{1i}$ y $X_{2i}$ son los regresores, 
+y $\varepsilon_i \sim N(0, \sigma^2)$ es el término de error.
+
+\section{Minimización de la suma de cuadrados}
+
+El estimador OLS minimiza:
+\[
+  \sum_{i=1}^{N} (Y_i - \hat{Y}_i)^2
+    = \sum_{i=1}^{N} (Y_i - \hat{\beta}_0
+      - \hat{\beta}_1 X_{1i} - \hat{\beta}_2 X_{2i})^2
+\]
+
+Esta es una función cuadrática en los parámetros que se puede minimizar 
+usando cálculo. La solución de primer orden nos da las ecuaciones normales 
+de OLS.
+
+Como vemos en la ecuación \eqref{eq:rlm}, el modelo es lineal en los 
+parámetros. Esta linealidad es crucial porque permite obtener una solución 
+cerrada para el estimador OLS.
+
+\end{document}

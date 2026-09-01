@@ -1,0 +1,60 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 3.1: Tabla de estadísticas descriptivas
+%%  Clase 1 — Después de diapositiva "Tablas profesionales con booktabs"
+%%  Compilar: F5 (pdflatex)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{booktabs}
+
+\title{Estadísticas descriptivas de la muestra}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Análisis descriptivo}
+
+La Tabla \ref{tab:descriptivas} presenta las principales estadísticas de 
+nuestra muestra.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Estadísticas descriptivas de la muestra}
+  \label{tab:descriptivas}
+  \begin{tabular}{lrrrr}
+    \toprule
+    Variable       & Media  & D.E.  & Mín.  & Máx.  \\
+    \midrule
+    Salario (Gs.) & 2.450.000 & 1.120.000 & 550.000 & 9.800.000 \\
+    Años de educación & 12.3 & 3.4  & 0     & 20    \\
+    Experiencia (años) & 8.7 & 5.1  & 0     & 40    \\
+    Mujer (=1)    & 0.48  & 0.50  & 0     & 1     \\
+    \midrule
+    Observaciones & \multicolumn{4}{c}{1.200} \\
+    \bottomrule
+  \end{tabular}
+  \begin{minipage}{\linewidth}
+    \footnotesize \textit{Fuente:} EPH 2023. Elaboración propia.
+  \end{minipage}
+\end{table}
+
+\subsection*{Respuestas a las preguntas}
+
+\textbf{¿Qué hace \texttt{\textbackslash multicolumn\{4\}\{c\}\{1.200\}}?}
+
+Este comando une 4 columnas en una sola (``span'') y centra el contenido 
+con alineamiento \texttt{c} (center). Es útil para etiquetas que aplican 
+a múltiples columnas.
+
+\textbf{¿Qué cambió al alinear la columna ``Variable'' a izquierda?}
+
+La columna 1 pasó de alineamiento \texttt{c} (center, por defecto) a 
+\texttt{l} (left), lo que hace más legible la tabla porque los nombres 
+se alinean a la izquierda.
+
+\end{document}

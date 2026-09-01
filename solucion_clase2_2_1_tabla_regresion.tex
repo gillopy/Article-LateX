@@ -1,0 +1,99 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 2.1: Tabla de regresión al estilo AER
+%%  Clase 2 — Después de diapositiva "Tabla de regresión al estilo AER"
+%%  Compilar: F5 (pdflatex, dos veces)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+
+\title{Ecuación de Mincer: Análisis de regresión}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Retornos a la educación}
+
+La Tabla \ref{tab:mincer} presenta los resultados de estimar la ecuación de 
+Mincer bajo tres especificaciones distintas. En la columna (1) estimamos solo 
+el efecto de educación. En (2) agregamos experiencia potencial y su cuadrado. 
+En (3) incluimos un indicador de género.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ecuación de Mincer: retornos a la educación}
+  \label{tab:mincer}
+  \begin{tabular}{lccc}
+    \toprule
+                         & (1)        & (2)        & (3)       \\
+                         & \multicolumn{3}{c}{Variable dep.: $\ln(salario)$} \\
+    \cmidrule(lr){2-4}
+    \midrule
+    Educación            & 0.082***   & 0.071***   & 0.069***  \\
+                         & (0.008)    & (0.009)    & (0.010)   \\[5pt]
+    Experiencia          &            & 0.034**    & 0.031**   \\
+                         &            & (0.012)    & (0.013)   \\[5pt]
+    Experiencia$^2$      &            & $-$0.001** & $-$0.001* \\
+                         &            & (0.000)    & (0.000)   \\[5pt]
+    Mujer (=1)           &            &            & $-$0.183*** \\
+                         &            &            & (0.042)   \\[5pt]
+    Constante            & 7.241***   & 7.018***   & 7.312***  \\
+                         & (0.098)    & (0.115)    & (0.122)   \\
+    \midrule
+    Controles sector     & No         & No         & Sí        \\
+    Observaciones        & 1.200      & 1.200      & 1.200     \\
+    $R^2$ ajustado       & 0.241      & 0.318      & 0.374     \\
+    \bottomrule
+  \end{tabular}
+  \begin{minipage}{\linewidth}
+    \footnotesize \textit{Notas:} Errores estándar robustos a heterocedasticidad 
+    en paréntesis. *** $p<0.01$, ** $p<0.05$, * $p<0.1$. La especificación 
+    (3) incluye controles por sector económico (8 categorías). 
+    \textit{Fuente:} EPH 2023, elaboración propia.
+  \end{minipage}
+\end{table}
+
+\section{Respuestas a las preguntas}
+
+\subsection*{¿Qué hace \texttt{\textbackslash cmidrule(lr)\{2-4\}}?}
+
+Este comando dibuja una línea horizontal parcial (no completa) que abarca 
+columnas 2 a 4. Los parámetros \texttt{(lr)} agregan pequeñas extensiones 
+a izquierda (``l'') y derecha (``r'') para que la línea se vea mejor 
+tipográficamente. Sin los parámetros, la línea estaría perfectamente centrada 
+en las celdas.
+
+\subsection*{¿Cómo obtener el signo negativo tipográfico correcto?}
+
+La diferencia es:
+\begin{itemize}
+  \item \textbf{Incorrecto:} \texttt{-0.001} produce ``-0.001'' (guion corto)
+  \item \textbf{Correcto:} \texttt{\$-\$0.001} o simplemente \texttt{\$-0.001\$} 
+        en modo matemático produce ``$-0.001$'' (signo menos verdadero)
+\end{itemize}
+
+En la tabla, usamos la notación \verb|-0.001| que se interpreta como 
+``menos'' porque estamos en modo texto pero \LaTeX{} es lo suficientemente 
+inteligente como para renderizar el signo correcto. Una forma explícita es 
+usar modo matemático: \verb|$-$0.001|.
+
+\section*{Interpretación económica}
+
+\begin{enumerate}
+  \item \textbf{Retorno a la educación:} Un año adicional de educación aumenta 
+        el salario en aproximadamente 6.9\% (especificación 3).
+  \item \textbf{Retorno a la experiencia:} Cada año de experiencia aumenta el 
+        salario en 3.1\%, pero el efecto decrece con los años de experiencia 
+        (coeficiente negativo en experiencia$^2$).
+  \item \textbf{Brecha de género:} Las mujeres ganan 18.3\% menos que los hombres, 
+        controlando por educación y experiencia. Esta brecha podría reflejar 
+        discriminación, segregación ocupacional, o diferencias en negociación de salarios.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,102 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 1.3: Teoremas y proposiciones
+%%  Clase 2 — Después de diapositiva "Entornos de teoremas"
+%%  Compilar: F5 (pdflatex)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- ENTORNOS MATEMÁTICOS ---
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}[theorem]{Lema}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
+\newtheorem{assumption}{Supuesto}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observación}
+
+\title{Marcos teóricos en econometría}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Capital humano}
+
+\begin{definition}
+  El \textbf{estimador de Máxima Verosimilitud} (EMV) de un parámetro 
+  $\theta \in \Theta$ es el valor $\hat{\theta}$ que maximiza la función 
+  de verosimilitud:
+  \[
+    \hat{\theta} = \arg\max_{\theta \in \Theta} L(\theta; y_1, \ldots, y_n)
+  \]
+  donde $L(\theta; y_1, \ldots, y_n)$ es la verosimilitud de la muestra 
+  observada bajo el parámetro $\theta$.
+\end{definition}
+
+\begin{assumption}
+  \label{ass:gauss_markov}
+  \textbf{Supuestos de Gauss-Markov}: Sea el modelo de regresión lineal 
+  $Y = X\beta + \varepsilon$. Asumimos:
+  \begin{enumerate}
+    \item Linealidad en los parámetros.
+    \item Muestra aleatoria.
+    \item Variabilidad en $X$ (rango completo).
+    \item Exogeneidad: $\mathbb{E}[\varepsilon | X] = 0$.
+    \item Homocedasticidad: $\text{Var}(\varepsilon | X) = \sigma^2 I_N$.
+    \item No autocorrelación: $\text{Cov}(\varepsilon_i, \varepsilon_j | X) = 0$ 
+          para $i \neq j$.
+  \end{enumerate}
+\end{assumption}
+
+\begin{proposition}
+  \label{prop:ols_meli}
+  Bajo los Supuestos de Gauss-Markov (Supuesto \ref{ass:gauss_markov}), 
+  el estimador OLS $\hat{\beta} = (X'X)^{-1}X'Y$ es \textbf{MELI} 
+  (Mejor Estimador Lineal Insesgado). Esto significa que entre todos los 
+  estimadores que son lineales en $Y$ e insesgados, OLS tiene la varianza 
+  más pequeña.
+\end{proposition}
+
+\begin{proof}
+  El estimador OLS es:
+  \[
+    \hat{\beta} = (X'X)^{-1}X'Y = (X'X)^{-1}X'(X\beta + \varepsilon) 
+              = \beta + (X'X)^{-1}X'\varepsilon
+  \]
+  
+  Tomando esperanza:
+  \[
+    \mathbb{E}[\hat{\beta}] = \beta + (X'X)^{-1}X'\mathbb{E}[\varepsilon]
+                            = \beta + 0 = \beta
+  \]
+  
+  donde usamos el Supuesto de exogeneidad $\mathbb{E}[\varepsilon] = 0$.
+  
+  Luego, la matriz de varianza-covarianza es:
+  \[
+    \text{Var}(\hat{\beta}) = (X'X)^{-1}X'\text{Var}(\varepsilon)X(X'X)^{-1}
+                            = \sigma^2 (X'X)^{-1}
+  \]
+  
+  donde usamos homocedasticidad. Por el Teorema de Gauss-Markov, esta varianza 
+  es la mínima entre todos los estimadores lineales insesgados.
+\end{proof}
+
+\begin{remark}
+  La Proposición \ref{prop:ols_meli} es fundamental en econometría. Nos dice 
+  que si los supuestos se cumplen, no hay mejor estimador que OLS (en la clase 
+  de estimadores lineales e insesgados). Sin embargo, si alguno de los supuestos 
+  falla —particularmente la exogeneidad— entonces OLS puede ser sesgado y 
+  necesitamos otros métodos como VI (variables instrumentales).
+\end{remark}
+
+\end{document}

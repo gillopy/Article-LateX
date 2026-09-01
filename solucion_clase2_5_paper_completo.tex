@@ -1,0 +1,275 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicio 5: Paper completo (INTEGRADOR)
+%%  Clase 2 — Al final de la Clase 2
+%%  Compilación: pdflatex → biber → pdflatex → pdflatex
+%%  (O en TeXstudio: F5 → F11 → F5 → F5)
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% --- Codificación ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+
+% --- Geometría ---
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+
+% --- Matemáticas y teoremas ---
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, linkcolor=black, citecolor=blue]{hyperref}
+
+% --- MACROS ECONOMÉTRICAS ---
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\plim}{\operatorname{plim}}
+
+% --- ENTORNOS MATEMÁTICOS ---
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}[theorem]{Lema}
+
+\theoremstyle{definition}
+\newtheorem{assumption}{Supuesto}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observación}
+
+% --- BIBLIOGRAFÍA ---
+\usepackage[style=authoryear, backend=biber, maxnames=3]{biblatex}
+\addbibresource{referencias.bib}
+
+% --- METADATOS ---
+\title{Salarios y educación en Paraguay:\\Una aplicación de la ecuación de Mincer}
+\author{Tu Nombre}
+\date{\today}
+
+% ================================================================
+\begin{document}
+% ================================================================
+
+\maketitle
+\thispagestyle{empty}
+
+% --- Abstract ---
+\begin{abstract}
+\noindent
+Este trabajo estima los retornos a la educación para Paraguay usando datos 
+de la Encuesta Permanente de Hogares 2023 y la ecuación de Mincer. Estimamos 
+que un año adicional de educación aumenta el salario en aproximadamente 
+6.9\%, controlando por experiencia laboral y características demográficas. 
+Documentamos una importante brecha de género: las mujeres ganan 18.3\% menos 
+que los hombres con igual educación y experiencia. Estos resultados sugieren 
+que la inversión en educación es económicamente rentable, pero que persisten 
+disparidades en el mercado laboral que requieren intervención de política pública.
+
+\vspace{0.5em}
+\noindent \textbf{Palabras clave:} capital humano, retornos a la educación, 
+brecha de género, mercado laboral, Paraguay.
+
+\noindent \textbf{Clasificación JEL:} J24, J31, I20.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ================================================================
+\section{Introducción}
+% ================================================================
+
+Desde Becker (1964), sabemos que la educación es una forma de inversión en 
+capital humano que aumenta la productividad y, por tanto, los salarios. La 
+\textcite{mincer1974} proporciona un marco flexible para estimar los retornos 
+a la educación en datos de corte transversal.
+
+En Paraguay, poco se conoce sobre los retornos a la educación o sobre cómo 
+varían estos retornos según características individuales. Este trabajo llena 
+ese vacío estimando ecuaciones de ingresos para una muestra representativa 
+de trabajadores.
+
+\subsection{Contribuciones}
+
+Este trabajo contribuye de tres formas:
+
+\begin{enumerate}
+  \item Proporciona estimaciones de los retornos a la educación específicas 
+        para Paraguay, contexto que carece de evidencia reciente.
+  \item Documenta brechas de género en salarios y analiza su origen.
+  \item Usa métodos econométricos estándar (OLS con errores robustos) que 
+        sirven como base para investigación futura con técnicas más sofisticadas.
+\end{enumerate}
+
+% ================================================================
+\section{Marco teórico y empírico}
+% ================================================================
+
+\subsection{El modelo de capital humano}
+
+El modelo de capital humano postula que los individuos invierten en educación 
+porque esperan retornos futuros en la forma de salarios más altos. La ecuación 
+de Mincer, en su forma estándar, es:
+
+\begin{equation}
+  \ln(w_i) = \alpha + \beta_1 \, \text{educ}_i + \beta_2 \, \text{exp}_i 
+             + \beta_3 \, \text{exp}_i^2 + \gamma \, \text{mujer}_i + \varepsilon_i
+  \label{eq:mincer}
+\end{equation}
+
+donde $w_i$ es el salario mensual y $\varepsilon_i$ es el término de error.
+
+\subsection{Supuestos y estimación}
+
+\begin{assumption}
+  \label{ass:linearity}
+  La relación entre log-salarios e inputs educativos es lineal en los parámetros.
+\end{assumption}
+
+\begin{assumption}
+  \label{ass:ceteris}
+  \label{ass:exogeneity}
+  Exogeneidad: $\E[\varepsilon_i | \text{educ}_i, \text{exp}_i, \text{mujer}_i] = 0$. 
+  Es decir, educación no está correlacionada con factores no observados que 
+  afecten salarios (habilidad, motivación).
+\end{assumption}
+
+\begin{proposition}
+  \label{prop:ols_consistency}
+  Bajo los Supuestos \ref{ass:linearity}--\ref{ass:exogeneity}, el estimador 
+  OLS de la ecuación \eqref{eq:mincer} es consistente.
+\end{proposition}
+
+\begin{remark}
+  El Supuesto \ref{ass:exogeneity} es fuerte y probablemente se viola en la 
+  práctica: habilidad no observada está correlacionada tanto con educación 
+  (personas más capaces estudian más) como con salarios. Esto genera sesgo 
+  de variable omitida. Métodos como variables instrumentales podrían abordar 
+  este problema.
+\end{remark}
+
+% ================================================================
+\section{Datos}
+% ================================================================
+
+Los datos provienen de la Encuesta Permanente de Hogares (EPH) 2023, realizada 
+por el Instituto Nacional de Estadística. La EPH es una encuesta de hogares 
+de propósito general que cubre información sobre empleo, educación, y 
+características demográficas.
+
+Para este análisis, seleccionamos individuos ocupados de 18 a 65 años con 
+información completa en todas las variables necesarias. La muestra final 
+contiene 1.200 observaciones.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Estadísticas descriptivas}
+  \label{tab:desc}
+  \begin{tabular}{lrrrr}
+    \toprule
+    Variable                    & Media  & D.E.   & Mín.  & Máx.  \\
+    \midrule
+    Log(salario mensual)        & 14.52  & 0.53   & 13.22 & 16.10 \\
+    Años de educación           & 12.3   & 3.4    & 0     & 20    \\
+    Experiencia potencial       & 8.7    & 5.1    & 0     & 40    \\
+    Mujer (=1)                  & 0.48   & 0.50   & 0     & 1     \\
+    \midrule
+    Observaciones               & \multicolumn{4}{c}{1.200} \\
+    \bottomrule
+  \end{tabular}
+  \begin{minipage}{\linewidth}
+    \footnotesize \textit{Notas:} La experiencia potencial se calcula como 
+    edad $-$ años de educación $-$ 6. \textit{Fuente:} EPH 2023, INE.
+  \end{minipage}
+\end{table}
+
+% ================================================================
+\section{Resultados}
+% ================================================================
+
+La Tabla \ref{tab:regresion} presenta nuestras estimaciones. La columna (1) 
+estima el retorno a la educación sin otros controles. La columna (2) agrega 
+experiencia y su cuadrado. La columna (3) incluye un indicador de género.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ecuación de Mincer: estimaciones OLS}
+  \label{tab:regresion}
+  \begin{tabular}{lccc}
+    \toprule
+                          & (1)        & (2)        & (3)        \\
+                          & \multicolumn{3}{c}{\textit{Variable dep.: } $\ln(\text{salario})$} \\
+    \cmidrule(lr){2-4}
+    \midrule
+    Educación             & 0.082***   & 0.071***   & 0.069***   \\
+                          & (0.008)    & (0.009)    & (0.010)    \\[4pt]
+    Experiencia           &            & 0.034**    & 0.031**    \\
+                          &            & (0.012)    & (0.013)    \\[4pt]
+    Experiencia$^2$       &            & $-$0.001** & $-$0.001*  \\
+                          &            & (0.000)    & (0.000)    \\[4pt]
+    Mujer (=1)            &            &            & $-$0.183***\\
+                          &            &            & (0.042)    \\[4pt]
+    Constante             & 7.241***   & 7.018***   & 7.312***   \\
+                          & (0.098)    & (0.115)    & (0.122)    \\
+    \midrule
+    Observaciones         & 1.200      & 1.200      & 1.200      \\
+    $R^2$ ajustado        & 0.241      & 0.318      & 0.374      \\
+    \bottomrule
+  \end{tabular}
+  \begin{minipage}{\linewidth}
+    \footnotesize \textit{Notas:} Errores estándar robustos a 
+    heterocedasticidad en paréntesis. *** $p<0.01$, ** $p<0.05$, 
+    * $p<0.1$. \textit{Fuente:} EPH 2023, elaboración propia.
+  \end{minipage}
+\end{table}
+
+\subsection{Interpretación}
+
+El coeficiente de educación en la especificación (3) es 0.069, lo que implica 
+que un año adicional de educación aumenta el salario en aproximadamente 
+6.9\%. Este retorno es estadísticamente significativo y económicamente 
+importante.
+
+Analizando el sistema de ecuaciones con experiencia:
+\begin{align}
+  \ln(w_i) &= 7.312 + 0.069 \cdot \text{educ}_i + 0.031 \cdot \text{exp}_i 
+             - 0.001 \cdot \text{exp}_i^2 - 0.183 \cdot \text{mujer}_i + \varepsilon_i
+\end{align}
+
+El ciclo de vida de ingresos tiene forma de U invertida: los ingresos suben 
+con experiencia pero a tasa decreciente. El retorno máximo a la experiencia 
+ocurre a aproximadamente $\text{exp}^* = 0.031 / (2 \times 0.001) = 15.5$ años 
+de experiencia.
+
+La brecha de género es substantiva: ser mujer reduce el log-salario en 0.183, 
+o equivalentemente, reduce el salario en $(e^{0.183} - 1) \approx 20\%$ en 
+términos de nivel (no logarítmico).
+
+% ================================================================
+\section{Conclusiones}
+% ================================================================
+
+Este trabajo estima que los retornos a la educación en Paraguay son de 
+aproximadamente 7\% por año de escolaridad. Este retorno es comparable a 
+estimaciones internacionales y sugiere que la inversión en educación es 
+económicamente rentable.
+
+Sin embargo, documentamos una importante brecha de género que persiste incluso 
+después de controlar por educación y experiencia. Esta brecha podría reflejar:
+\begin{enumerate}
+  \item Discriminación en el mercado laboral.
+  \item Segregación ocupacional (mujeres en ocupaciones de menor remuneración).
+  \item Diferencias en negociación de salarios.
+  \item Otras fuentes de heterogeneidad no observada.
+\end{enumerate}
+
+Investigaciones futuras deberían explorar los mecanismos detrás de esta brecha 
+y estimar modelos con mayor sofisticación econométrica.
+
+\newpage
+\printbibliography[title={Referencias}]
+
+\end{document}

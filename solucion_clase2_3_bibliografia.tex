@@ -1,0 +1,67 @@
+%% ============================================================
+%%  SOLUCIÓN — Ejercicios 3.1 y 3.2: Bibliografía con biblatex
+%%  Clase 2 — Después de diapositiva "El sistema de bibliografía"
+%%  IMPORTANTE: Este archivo requiere compilación especial:
+%%  F5 → Tools → Bibliography (F11) → F5 → F5
+%%  O en terminal: pdflatex → biber → pdflatex → pdflatex
+%% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+% --- BIBLIOGRAFÍA CON BIBLATEX ---
+\usepackage[style=authoryear, backend=biber, maxnames=3]{biblatex}
+\addbibresource{referencias.bib}  % Asegurate de que el archivo .bib exista
+
+\title{Capital humano y retornos a la educación}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introducción}
+
+El modelo de capital humano, introducido por \textcite{mincer1974}, plantea 
+que los salarios crecen con la educación y la experiencia acumulada en el 
+mercado laboral. Este modelo ha sido extensamente validado empíricamente en 
+múltiples contextos y países.
+
+\section{Marco teórico}
+
+Las instituciones coloniales tienen efectos persistentes en el desarrollo 
+económico \parencite{acemoglu2001}. Este hallazgo sugiere que los 
+determinantes de largo plazo del crecimiento económico no son solo políticas 
+de corto plazo, sino decisiones institucionales tomadas hace siglos.
+
+\section{Metodología}
+
+El instrumento de cercanía a universidades fue propuesto originalmente por 
+\citeauthor{card1995} (\citeyear{card1995}) para obtener estimadores 
+consistentes del retorno a la educación bajo endogeneidad. Este enfoque ha 
+sido ampliamente adoptado en la literatura de economía laboral.
+
+\section{Resultados}
+
+De acuerdo con \textcite{world_bank_2023}, los migrantes y refugiados tienen 
+efectos económicos significativos en las sociedades que los reciben. El 
+reporte del Banco Mundial documenta tanto desafíos como oportunidades.
+
+\section{Implicancias de política}
+
+Combinando los hallazgos de \textcite{mincer1974} con investigaciones más 
+recientes, podemos concluir que:
+
+\begin{enumerate}
+  \item La inversión en educación tiene altos retornos privados.
+  \item Los retornos varían significativamente según contexto y tipo de educación.
+  \item Existen barreras importantes para que ciertos grupos accedan a educación 
+        de calidad.
+\end{enumerate}
+
+\newpage
+\printbibliography[title={Referencias}]
+
+\end{document}
